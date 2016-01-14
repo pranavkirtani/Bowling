@@ -3,7 +3,14 @@ var usersModel=require('../models/users');
 exports.Play=function(req,res,next){
     var user_id=req.body.id;
     var character_string=req.body.string;
+    var pattern= /^(x|\/|[0-9])*$/
+    
     character_string=character_string.toLowerCase();
+    if(!pattern.test(character_string)||character_string.split('').length<12||character_string.split('').length>21){
+        res.status(400).json({status:'Invalid String'});
+        return;
+    
+    }
      usersModel.findOne({_id:user_id},function(err,user){
           if(err){
                 res.status(400).json({status:err});
@@ -43,6 +50,12 @@ exports.Play=function(req,res,next){
 exports.realTimePlay=function(req,res,next){
     var user_id=req.body.id;
     var current_score=req.body.score;
+    var pattern= /^(x|\/|[0-9])*$/
+    if(!pattern.test(current_score)){
+        res.status(400).json({status:'Invalid String'});
+        return;
+    
+    }
     usersModel.findOne({_id:user_id},function(err,user){
         if(err){
                 res.status(400).json({status:err});
