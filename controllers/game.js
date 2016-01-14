@@ -4,7 +4,7 @@ exports.Play=function(req,res,next){
     var user_id=req.body.id;
     var character_string=req.body.string;
     character_string=character_string.toLowerCase();
-     usersModel.findOne({id:user_id},function(err,user){
+     usersModel.findOne({_id:user_id},function(err,user){
           if(err){
                 res.status(400).json({status:err});
                  return;
@@ -43,7 +43,7 @@ exports.Play=function(req,res,next){
 exports.realTimePlay=function(req,res,next){
     var user_id=req.body.id;
     var current_score=req.body.score;
-    usersModel.findOne({id:user_id},function(err,user){
+    usersModel.findOne({_id:user_id},function(err,user){
         if(err){
                 res.status(400).json({status:err});
                  return;
@@ -79,7 +79,7 @@ exports.realTimePlay=function(req,res,next){
 
 exports.score=function(req,res,next){
     var user_id=req.params.userId;
-    usersModel.findOne({id:user_id},function(err,user){
+    usersModel.findOne({_id:user_id},function(err,user){
         if(err){
                 res.status(400).json({status:err});
                  return;
