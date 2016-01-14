@@ -3,6 +3,7 @@ exports.addUser=function(req,res,next){
     var user={}
     user.id=req.body.id;
     user.name=req.body.name;
+    user.score=0;
     var users= new usersModel(user);
     users.save(function(err,data){
         if(err){

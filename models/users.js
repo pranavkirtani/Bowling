@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     id:Number,
     name:String,
-    score:Number
+    score:Number,
+    frames:String,
     
 });
 var User = mongoose.model('User', userSchema);

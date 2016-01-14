@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.post('/addUser',userController.addUser);
 app.delete('/delUser',userController.deleteUser);
 app.post('/play',gameController.Play);
-app.get('/realTimePlay/:score/:userId',gameController.realTimePlay);
+app.post('/realTimePlay',gameController.realTimePlay);
 app.get('/score/:userId',gameController.score);
 app.listen(config.port||3000);
+console.log('listening on specified port');
