@@ -108,24 +108,24 @@ exports.score=function(req,res,next){
 }
 
  function calculateNextThrowScore(throw_array,i,throw_count){
-    if(!throw_array[i+1]){
+    if(!throw_array[i+1]){//this is used while calculating realtime score since all throws are not yet done by user
         return 0;
     }
  
-    else if(throw_array[i+1]=='x'){
+    else if(throw_array[i+1]=='x'){//if next throw is strike
         return 10;
     }
     else{
-     return parseInt(throw_array[i+1]);
+     return parseInt(throw_array[i+1]);//if next throw is not strike
     }
 
 
 }
- function calculateNextTwoThrows(throw_array,i,throw_count){
-  if(!throw_array[i+1]){
+ function calculateNextTwoThrows(throw_array,i,throw_count){//used for calculating next two throws
+  if(!throw_array[i+1]){//this is used while calculating realtime score since all throws are not et done by user
         return 0;
     }
-  else if(!throw_array[i+2]){
+  else if(!throw_array[i+2]){//this is used while calculating realtime score since all throws are not et done by user
    					if(throw_array[i+1]=='x'){
             
               return 10;
@@ -135,11 +135,11 @@ exports.score=function(req,res,next){
             }
          
     }
- else if(throw_array[i+1]=='x'&&throw_array[i+2]=='x'){
+ else if(throw_array[i+1]=='x'&&throw_array[i+2]=='x'){//if next 2 throws are strike
      
         return 20;
     }
-    else if(throw_array[i+1]=='x'&&throw_array[i+2]!='x'){
+    else if(throw_array[i+1]=='x'&&throw_array[i+2]!='x'){//if only next throw is strike
        var sum2=10+parseInt(throw_array[i+2]);
     
      return sum2;
@@ -162,7 +162,7 @@ exports.score=function(req,res,next){
  }
 
 
-
+/*this function calculates the running score */
 function playBowling(character_string){
     
     
@@ -173,34 +173,34 @@ function playBowling(character_string){
     var i=0;
     for(var frame_count=0;frame_count<10;frame_count++){
               throw_count++;
-        if(throw_array[i]=='x'&&throw_count==1){
+        if(throw_array[i]=='x'&&throw_count==1){//if first takes 10 pins then its a strike so check value of next two throws
             score_frame[frame_count]=10+calculateNextTwoThrows(throw_array,i,throw_count);
             
             throw_count=0;
             i++;
         }
-        else if(throw_array[i]=='/'&&throw_count==2){
+        else if(throw_array[i]=='/'&&throw_count==2){//if second throw  takes down 10 pins ,check the value of next throw to get score
             score_frame[frame_count]=10+calculateNextThrowScore(throw_array,i,throw_count);
            
             throw_count=0;
             i++;
         }
         else{
-            if(throw_count==1&&throw_array[i+1]&&throw_array[i+1]=='/'){
+            if(throw_count==1&&throw_array[i+1]&&throw_array[i+1]=='/'){//if next throw is a spare then add 10 and take value of next throw
                 score_frame[frame_count]=10+calculateNextThrowScore(throw_array,i+1,throw_count);
                 i+=2;
                 throw_count=0;
                
             
             }
-            else if(throw_count==1&&throw_array[i+1]&&throw_array[i+1]!='/'){
+            else if(throw_count==1&&throw_array[i+1]&&throw_array[i+1]!='/'){//if next frame does not have a spare add values of both throws
                 score_frame[frame_count]=parseInt(throw_array[i])+parseInt(throw_array[i+1]);
                 i=i+2;
                 throw_count=0;
                
             
             }
-            else if(!throw_array[i+1]){
+            else if(!throw_array[i+1]){//this is used while calculating realtime score since all throws are not et done by user
             	score_frame[frame_count]=parseInt(throw_array[i]);
               i=i+1;
             }
@@ -208,7 +208,7 @@ function playBowling(character_string){
         }
        
         
-        if(!isNaN(score_frame[frame_count])){
+        if(!isNaN(score_frame[frame_count])){//this is used while calculating realtime score since all throws are not et done by user
        
        		 running_score=running_score+score_frame[frame_count];
         

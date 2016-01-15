@@ -13,3 +13,4 @@ app.post('/realTimePlay',gameController.realTimePlay);
 app.get('/score/:userId',gameController.score);
 app.listen(config.port||3000);
 console.log('listening on specified port');
+module.exports=app;//exporting the app object so it the entire app can be used as a module
