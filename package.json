@@ -4,12 +4,16 @@
   "description": "api for making bowling ",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha ./tests/test.js",
+      "start":"node index"
   },
   "author": "pranav s kirtani",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
-    "mongoose": "^4.3.5"
+    "mocha": "^2.3.4",
+    "mongoose": "^4.3.5",
+    "should": "^8.1.1",
+    "supertest": "^1.1.0"
   }
 }
