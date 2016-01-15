@@ -30,9 +30,27 @@ the score of one throw and userId, and returns the running score for the whole g
 
 
 Running the application:
+
 To Run the app use 'npm start'
 
 To Run tests use 'npm test'
 
 you can configure port ,server url and db in  config.js file inside config folder
 
+
+
+Example games:
+
+ Game('XXXXXXXXXXXX').score == 300 , player - TOM
+
+ Game('90909090909090909090').score == 90 , player - JERRY
+
+ Game('5/5/5/5/5/5/5/5/5/5/5').score == 150 , player - TOM
+
+ Game('X7/729/XXX236/7/3').score == 168 , player - ANDREW
+
+ Game('00000000000000000000').score == 0 , player - TOM
+
+ Game('01273/X5/7/345400X70').score == 113 , player - TOM
+
+ Game('X7/90X088/06XXX81').score == 167 , player - MIKE
